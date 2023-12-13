@@ -156,4 +156,37 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
 
   });
+
+  //smtp js
+  const Emailform = document.querySelector('form');
+  const fullName = document.getElementById("name")
+
+  function sendEmail() {
+    const bodyMessage = `Full Name: ${fullName.value}<br> Email: ${email.value}<br> Message: ${mess.value}`;
+
+    Email.send({
+    SecureToken :"4ee4ae08-c769-4546-8cf1-e7fe5e92fc07",
+    Username : "jfloservices001@gmail.com",
+    Password : "E15E562BB06D87F268181E8CA89A475D4F26",
+    To : 'jfloservices001@gmail.com',
+    From : "jfloservices001@gmail.com",
+    Subject : email.value,
+    Body : bodyMessage
+}).then(message => {
+  if (message === "OK") {
+    Swal.fire({
+      title: "Thanks for booking, fALM! Message sent.",
+      text: "Rest assured, we'll reply ASAP.",
+      icon: "success"
+    });
+  }
+});
+}
+
+  form.addEventListener("submit", (e) => { 
+    e.preventDefault();
+
+    sendEmail();
+  });
+
 }
